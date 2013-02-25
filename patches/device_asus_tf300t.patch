@@ -1,0 +1,52 @@
+diff --git a/device_tf300t.mk b/device_tf300t.mk
+--- a/device_tf300t.mk
++++ b/device_tf300t.mk
+@@ -65,19 +65,21 @@ PRODUCT_TAGS += dalvik.gc.type-precise
+ 
+ # Extra packages to build for this device
+ PRODUCT_PACKAGES += \
+-    librs_jni \
+-    com.android.future.usb.accessory \
+     make_ext4fs \
+     setup_fs \
+     audio.a2dp.default \
+     tinymix \
+     libaudioutils \
+-    AutoParts_tfp \
+     blobpack_tfp \
+     mischelp \
+     wifimacwriter \
+-    com.cyanogenmod.asusdec \
+-    libasusdec_jni
++
++#PRODUCT_PACKAGES += \
++#    com.android.future.usb.accessory \
++#    librs_jni \
++#    AutoParts_tfp \
++#    com.cyanogenmod.asusdec \
++#    libasusdec_jni
+ 
+ # Propertys spacific for this device
+ PRODUCT_PROPERTY_OVERRIDES := \
+diff --git a/ramdisk/fstab.cardhu b/ramdisk/fstab.cardhu
+index 174cffb..d8a6e8e 100644
+--- a/ramdisk/fstab.cardhu
++++ b/ramdisk/fstab.cardhu
+@@ -5,4 +5,4 @@
+ 
+ /dev/block/mmcblk0p1	/system	ext4	ro	wait
+ /dev/block/mmcblk0p2	/cache	ext4	noatime,nosuid,nodev,nomblk_io_submit,errors=panic	wait
+-/dev/block/mmcblk0p8	/data	ext4	noatime,nosuid,nodev,nomblk_io_submit,errors=panic	wait,encryptable=footer
++/dev/block/mmcblk0p8	/data	ext4	noatime,nodev,nomblk_io_submit,errors=panic	wait,encryptable=footer
+diff --git a/ramdisk/init.cardhu.rc b/ramdisk/init.cardhu.rc
+index d04271e..4b25b39 100644
+--- a/ramdisk/init.cardhu.rc
++++ b/ramdisk/init.cardhu.rc
+@@ -89,6 +89,7 @@ on boot
+ 
+ # backlight
+     chown system system /sys/class/backlight/pwm-backlight/brightness
++    chmod 0666 /sys/class/backlight/pwm-backlight/brightness
+ 
+ # didim
+     chown system system /sys/class/graphics/fb0/device/smartdimmer/enable

@@ -1,0 +1,19 @@
+diff --git a/usr/bin/ubuntu-session b/usr/bin/ubuntu-session
+--- a/usr/bin/ubuntu-session
++++ b/usr/bin/ubuntu-session
+@@ -78,6 +78,15 @@ elif [ "$device" == "HTC DNA" ]; then
+     [ $? -ne 0 ] && echo "export QTWEBKIT_DPR=2.5" >> /home/phablet/.bashrc
+     export QTWEBKIT_DPR=2.5
+     export FORM_FACTOR="phone"
++elif [ "$device" == "cardhu" ]; then
++    services="/etc/tablet-services"
++    grep -q GRID_UNIT_PX /home/phablet/.bashrc
++    [ $? -ne 0 ] && echo "export GRID_UNIT_PX=10" >> /home/phablet/.bashrc
++    export GRID_UNIT_PX=10
++    grep -q QTWEBKIT_DPR /home/phablet/.bashrc
++    [ $? -ne 0 ] && echo "export QTWEBKIT_DPR=1.6" >> /home/phablet/.bashrc
++    export QTWEBKIT_DPR=1.6
++    export FORM_FACTOR="tablet"
+ else
+     services="/etc/phone-services"
+     grep -q GRID_UNIT_PX /home/phablet/.bashrc
