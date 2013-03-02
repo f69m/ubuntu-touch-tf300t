@@ -1,0 +1,40 @@
+=== modified file 'debian/patches/series'
+--- debian/patches/series	2012-10-03 23:55:41 +0000
++++ debian/patches/series	2013-02-27 19:34:07 +0000
+@@ -184,3 +184,4 @@
+ ubuntu/revert-c5a0802a.diff
+ any/CVE-2012-3406.patch
+ any/CVE-2012-3480.patch
++tf300t/fix-missing-include.patch
+
+=== added directory 'debian/patches/tf300t'
+=== added file 'debian/patches/tf300t/fix-missing-include.patch'
+--- debian/patches/tf300t/fix-missing-include.patch	1970-01-01 00:00:00 +0000
++++ debian/patches/tf300t/fix-missing-include.patch	2013-02-27 19:41:51 +0000
+@@ -0,0 +1,12 @@
++Index: tf300t/libio/getwc_u.c
++===================================================================
++--- tf300t.orig/libio/getwc_u.c	2013-02-27 20:39:28.048945000 +0100
+++++ tf300t/libio/getwc_u.c	2013-02-27 20:39:21.298836148 +0100
++@@ -27,6 +27,7 @@
++ 
++ #include "libioP.h"
++ #include <stdio.h>
+++#include <wchar.h>
++ 
++ #undef getwc_unlocked
++ 
+
+=== modified file 'debian/rules'
+--- debian/rules	2012-02-27 10:21:40 +0000
++++ debian/rules	2013-02-27 15:06:23 +0000
+@@ -124,7 +124,7 @@
+ endif
+ 
+ BUILD_CFLAGS = -O2 -g
+-HOST_CFLAGS = -pipe -O2 -fstrict-aliasing -g $(call xx,extra_cflags)
++HOST_CFLAGS = -pipe -O2 -fstrict-aliasing -g -DIO_DEBUG $(call xx,extra_cflags)
+ 
+ configure_target := $(DEB_HOST_GNU_TYPE)
+ 
+

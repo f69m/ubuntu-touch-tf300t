@@ -1,0 +1,21 @@
+diff a/ubuntu_chroot b/ubuntu_chroot
+--- a/ubuntu_chroot
++++ b/ubuntu_chroot
+@@ -27,10 +27,13 @@ UCHROOT=/system/bin/uchroot
+ 
+ enable_swap()
+ {
+-    if [ -f /data/ubuntu/SWAP.swap ]
+-    then
+-        /system/xbin/swapon /data/ubuntu/SWAP.swap
+-    fi
++	if [ ! -f /data/swapfile ]; then
++		/system/bin/dd if=/dev/zero of=/data/swapfile bs=1048576 count=100
++		/system/xbin/mkswap /data/swapfile
++	fi
++	if [ -s /data/swapfile ]; then
++		/system/xbin/swapon /data/swapfile
++	fi
+ }
+ 
+ export_qt5_shell_envvars()
