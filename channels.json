@@ -1,0 +1,9 @@
+{
+	"trusty": {
+		"devices": {
+			"tf300t": {
+				"index": "/trusty/tf300t/index.json"
+            }
+        }
+	}
+}
