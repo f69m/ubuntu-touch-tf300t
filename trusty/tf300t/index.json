@@ -1,0 +1,17 @@
+{
+	"images": [
+		{
+			"version": 1,
+			"type": "full",
+			"files": [
+				{
+					"checksum": "01af64f0546d031753e5bd7bcea822a3e1dc8c7b397322ad674f10f99c904065",
+					"order": 0,
+					"path": "/pool/ubuntu-ba1d394634d274c62ba61249b2e53ddfae2a5e3f2156c6b5bcc43ca572a5bd0d.tar.xz",
+					"signature": "/pool/ubuntu-ba1d394634d274c62ba61249b2e53ddfae2a5e3f2156c6b5bcc43ca572a5bd0d.tar.xz.asc",
+					"size": 338043360
+                }
+			]
+		}
+	]
+}
